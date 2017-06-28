@@ -15,8 +15,8 @@ bit firmware on an amd64 Atom CPU.
   Need to create the custom ISO with Void's mklive and
   [PR102](https://github.com/voidlinux/void-mklive/pull/102)
 
-- OpenBSD, not a Linux distro but included support for bootia32.efi on the
-  install media.
+- OpenBSD, not a Linux distro but includes support for bootia32.efi on the
+  install media (install61.fs).
 
 # Hardware
 
@@ -24,4 +24,5 @@ TBD
 
 # Similar pages
 
+- [Install Linux on Nextbook Flexx Baytrail tablet](https://github.com/burzumishi/linux-baytrail-flexx10)
 
