@@ -22,12 +22,15 @@ bit firmware on an amd64 Atom CPU.
 
 - CPU: Intel(R) Atom(TM) CPU Z3735F @ 1.33 GHz
 - Battery: axp288 (min/max: 0x??/0x??)
+- Wifi: Realtek RTL8723BS Wireless LAN 80211n SDIO Network Adapter
 - TBD
 
 # Configuration
 
 By default the RCA Cambio runs in portrait mode, but before booting you'll want
 to add `video=efifb fbcon=rotate:1` to your kernel command line.
+
+Linux Kernel 4.11 and higher is needed for DRM video acceleration.
 
 # Similar pages
 
