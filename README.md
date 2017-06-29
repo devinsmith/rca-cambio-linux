@@ -20,9 +20,14 @@ bit firmware on an amd64 Atom CPU.
 
 # Hardware
 
+- CPU: Intel(R) Atom(TM) CPU Z3735F @ 1.33 GHz
 - Battery: axp288 (min/max: 0x??/0x??)
+- TBD
 
-TBD
+# Configuration
+
+By default the RCA Cambio runs in portrait mode, but before booting you'll want
+to add `video=efifb fbcon=rotate:1` to your kernel command line.
 
 # Similar pages
 
