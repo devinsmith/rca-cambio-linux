@@ -20,6 +20,8 @@ bit firmware on an amd64 Atom CPU.
 
 # Hardware
 
+- Battery: axp288 (min/max: 0x??/0x??)
+
 TBD
 
 # Similar pages
