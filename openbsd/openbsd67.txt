@@ -1,0 +1,171 @@
+OpenBSD 6.7-beta (GENERIC.MP) #143: Sun Apr 19 18:58:24 MDT 2020
+    deraadt@amd64.openbsd.org:/usr/src/sys/arch/amd64/compile/GENERIC.MP
+real mem = 2067070976 (1971MB)
+avail mem = 1991872512 (1899MB)
+mpath0 at root
+scsibus0 at mpath0: 256 targets
+mainbus0 at root
+bios0 at mainbus0: SMBIOS rev. 3.0 @ 0x7c579000 (49 entries)
+bios0: vendor American Megatrends Inc. version "5.6.5" date 09/23/2016
+bios0: RCA W101 V2 TH2
+acpi0 at bios0: ACPI 5.0
+acpi0: sleep states S0 S4 S5
+acpi0: tables DSDT FACP TCPA MSDM UEFI BCFG OEM0 DBG2 HPET LPIT APIC MCFG SSDT SSDT SSDT SSDT FPDT SSDT SSDT SSDT SSDT TPM2 BGRT CSRT
+acpi0: wakeup devices WLAN(S0)
+acpihpet0 at acpi0: 14318179 Hz
+acpimadt0 at acpi0 addr 0xfee00000
+cpu0 at mainbus0: apid 0 (boot processor)
+cpu0: Intel(R) Atom(TM) CPU Z3735F @ 1.33GHz, 1333.58 MHz, 06-37-08
+cpu0: FPU,VME,DE,PSE,TSC,MSR,PAE,MCE,CX8,APIC,SEP,MTRR,PGE,MCA,CMOV,PAT,PSE36,CFLUSH,DS,ACPI,MMX,FXSR,SSE,SSE2,SS,HTT,TM,PBE,SSE3,PCLMUL,DTES64,MWAIT,DS-CPL,VMX,EST,TM2,SSSE3,CX16,xTPR,PDCM,SSE4.1,SSE4.2,MOVBE,POPCNT,DEADLINE,AES,RDRAND,NXE,RDTSCP,LONG,LAHF,3DNOWP,PERF,ITSC,TSC_ADJUST,SMEP,ERMS,SENSOR,ARAT,MELTDOWN
+cpu0: 1MB 64b/line 16-way L2 cache
+cpu0: smt 0, core 0, package 0
+mtrr: Pentium Pro MTRR support, 8 var ranges, 88 fixed ranges
+cpu0: apic clock running at 83MHz
+cpu0: mwait min=64, max=64, C-substates=0.2.0.0.0.0.3.3, IBE
+cpu1 at mainbus0: apid 2 (application processor)
+cpu1: Intel(R) Atom(TM) CPU Z3735F @ 1.33GHz, 1333.34 MHz, 06-37-08
+cpu1: FPU,VME,DE,PSE,TSC,MSR,PAE,MCE,CX8,APIC,SEP,MTRR,PGE,MCA,CMOV,PAT,PSE36,CFLUSH,DS,ACPI,MMX,FXSR,SSE,SSE2,SS,HTT,TM,PBE,SSE3,PCLMUL,DTES64,MWAIT,DS-CPL,VMX,EST,TM2,SSSE3,CX16,xTPR,PDCM,SSE4.1,SSE4.2,MOVBE,POPCNT,DEADLINE,AES,RDRAND,NXE,RDTSCP,LONG,LAHF,3DNOWP,PERF,ITSC,TSC_ADJUST,SMEP,ERMS,SENSOR,ARAT,MELTDOWN
+cpu1: 1MB 64b/line 16-way L2 cache
+cpu1: smt 0, core 1, package 0
+cpu2 at mainbus0: apid 4 (application processor)
+cpu2: Intel(R) Atom(TM) CPU Z3735F @ 1.33GHz, 1333.35 MHz, 06-37-08
+cpu2: FPU,VME,DE,PSE,TSC,MSR,PAE,MCE,CX8,APIC,SEP,MTRR,PGE,MCA,CMOV,PAT,PSE36,CFLUSH,DS,ACPI,MMX,FXSR,SSE,SSE2,SS,HTT,TM,PBE,SSE3,PCLMUL,DTES64,MWAIT,DS-CPL,VMX,EST,TM2,SSSE3,CX16,xTPR,PDCM,SSE4.1,SSE4.2,MOVBE,POPCNT,DEADLINE,AES,RDRAND,NXE,RDTSCP,LONG,LAHF,3DNOWP,PERF,ITSC,TSC_ADJUST,SMEP,ERMS,SENSOR,ARAT,MELTDOWN
+cpu2: 1MB 64b/line 16-way L2 cache
+cpu2: smt 0, core 2, package 0
+cpu3 at mainbus0: apid 6 (application processor)
+cpu3: Intel(R) Atom(TM) CPU Z3735F @ 1.33GHz, 1333.35 MHz, 06-37-08
+cpu3: FPU,VME,DE,PSE,TSC,MSR,PAE,MCE,CX8,APIC,SEP,MTRR,PGE,MCA,CMOV,PAT,PSE36,CFLUSH,DS,ACPI,MMX,FXSR,SSE,SSE2,SS,HTT,TM,PBE,SSE3,PCLMUL,DTES64,MWAIT,DS-CPL,VMX,EST,TM2,SSSE3,CX16,xTPR,PDCM,SSE4.1,SSE4.2,MOVBE,POPCNT,DEADLINE,AES,RDRAND,NXE,RDTSCP,LONG,LAHF,3DNOWP,PERF,ITSC,TSC_ADJUST,SMEP,ERMS,SENSOR,ARAT,MELTDOWN
+cpu3: 1MB 64b/line 16-way L2 cache
+cpu3: smt 0, core 3, package 0
+ioapic0 at mainbus0: apid 8 pa 0xfec00000, version 20, 87 pins, remapped
+acpimcfg0 at acpi0
+acpimcfg0: addr 0xe0000000, bus 0-255
+acpiprt0 at acpi0: bus 0 (PCI0)
+acpicpu0 at acpi0: C3(10@1000 mwait.1@0x64), C2(10@500 mwait.1@0x51), C1(1000@1 mwait.1), PSS
+acpicpu1 at acpi0: C3(10@1000 mwait.1@0x64), C2(10@500 mwait.1@0x51), C1(1000@1 mwait.1), PSS
+acpicpu2 at acpi0: C3(10@1000 mwait.1@0x64), C2(10@500 mwait.1@0x51), C1(1000@1 mwait.1), PSS
+acpicpu3 at acpi0: C3(10@1000 mwait.1@0x64), C2(10@500 mwait.1@0x51), C1(1000@1 mwait.1), PSS
+acpipwrres0 at acpi0: WWPR, resource for HS03, MODM
+acpipwrres1 at acpi0: PLPE
+acpipwrres2 at acpi0: USBC, resource for XHC1, EHC1, OTG1
+acpipwrres3 at acpi0: CLK0
+acpipwrres4 at acpi0: CLK1, resource for CAM1, CAM6, CAM4
+acpipwrres5 at acpi0: CLK0, resource for CAM2, CAM3, CAM5
+acpipwrres6 at acpi0: CLK1
+acpipwrres7 at acpi0: P28X
+acpipwrres8 at acpi0: P18X
+acpipwrres9 at acpi0: P28P
+acpipwrres10 at acpi0: P18P
+acpipwrres11 at acpi0: P28T
+acpipwrres12 at acpi0: P18T
+acpipwrres13 at acpi0: P1XT
+acpitz0 at acpi0: no critical temperature defined
+"INT3396" at acpi0 not configured
+bytgpio0 at acpi0: GPO2 uid 3 addr 0xfed0e000/0x1000 irq 50, 44 pins
+bytgpio1 at acpi0: GPO0 uid 1 addr 0xfed0c000/0x1000 irq 49, 102 pins
+dwiic0 at acpi0 I2C5 addr 0x9092c000/0x1000 irq 36
+iic0 at dwiic0
+"INT33F4" at iic0 addr 0x34 not configured
+dwiic1 at acpi0 I2C1 addr 0x90914000/0x1000 irq 32
+iic1 at dwiic1
+"OVTI2680" at iic1 addr 0x54 not configured
+"INT33FE" at iic0 addr 0x68 not configured
+dwiic0: no _CRS method at \\_SB_.I2C5.BMBT
+bytgpio2 at acpi0: GPO1 uid 2 addr 0xfed0d000/0x1000 irq 48, 28 pins
+dwiic2 at acpi0 I2C2 addr 0x9091a000/0x1000 irq 33
+iic2 at dwiic2
+"10EC5640" at iic2 addr 0x1c not configured
+"OVTI2680" at iic2 addr 0x54 not configured
+"MSSL1680" at iic2 addr 0x40 not configured
+"INT33BD" at acpi0 not configured
+acpibat0 at acpi0: BMBT model "SR Real Battery" serial 123456789 type LION oem "Intel SR 1"
+acpicmos0 at acpi0
+acpipci0 at acpi0 PCI0: 0x00000004 0x00000011 0x00000001
+"80860F28" at acpi0 not configured
+"INT0002" at acpi0 not configured
+sdhc0 at acpi0 SDHA addr 0x9094f000/0x1000 irq 44
+sdhc0: SDHC 3.0, 200 MHz base clock
+sdmmc0 at sdhc0: 8-bit, sd high-speed, mmc high-speed, dma
+sdhc1 at acpi0 SDHB addr 0x90905000/0x1000 irq 46
+sdhc1: SDHC 3.0, 100 MHz base clock
+sdmmc1 at sdhc1: 4-bit, sd high-speed, mmc high-speed, dma
+sdhc2 at acpi0 SDHD addr 0x9094d000/0x1000 irq 47, gpio
+sdhc2: SDHC 3.0, 100 MHz base clock
+sdmmc2 at sdhc2: 4-bit, sd high-speed, mmc high-speed, dma
+"INTL9C60" at acpi0 not configured
+"INTL9C60" at acpi0 not configured
+"80860F0A" at acpi0 not configured
+"OBDA8723" at acpi0 not configured
+"80860F0A" at acpi0 not configured
+dwiic3 at acpi0 I2C3 addr 0x90920000/0x1000 irq 34
+iic3 at dwiic3
+bgw0 at iic3 addr 0x18: BMA250E
+dwiic4 at acpi0 I2C4 addr 0x90926000/0x1000 irq 35
+iic4 at dwiic4
+"INT33D3" at acpi0 not configured
+"INTCFD9" at acpi0 not configured
+"ACPI000C" at acpi0 not configured
+acpiac0 at acpi0: AC unit offline
+"INT3401" at acpi0 not configured
+"INT3400" at acpi0 not configured
+"INT3407" at acpi0 not configured
+"INT3407" at acpi0 not configured
+"INT3407" at acpi0 not configured
+"INT3403" at acpi0 not configured
+"INT3403" at acpi0 not configured
+"INT3403" at acpi0 not configured
+"INT3409" at acpi0 not configured
+"INT3406" at acpi0 not configured
+"INT3403" at acpi0 not configured
+"INT3403" at acpi0 not configured
+"INT3403" at acpi0 not configured
+"MSFT0101" at acpi0 not configured
+acpivideo0 at acpi0: GFX0
+acpivout0 at acpivideo0: DD1F
+cpu0: using Silvermont MDS workaround
+cpu0: Enhanced SpeedStep 1333 MHz: speeds: 1329, 1328, 1245, 1162, 1079, 996, 913, 830, 581, 498 MHz
+pci0 at mainbus0 bus 0
+pchb0 at pci0 dev 0 function 0 "Intel Bay Trail Host" rev 0x0f
+inteldrm0 at pci0 dev 2 function 0 "Intel Bay Trail Video" rev 0x0f
+drm0 at inteldrm0
+inteldrm0: msi, VALLEYVIEW, gen 7
+xhci0 at pci0 dev 20 function 0 "Intel Bay Trail xHCI" rev 0x0f: msi, xHCI 1.0
+usb0 at xhci0: USB revision 3.0
+uhub0 at usb0 configuration 1 interface 0 "Intel xHCI root hub" rev 3.00/1.00 addr 1
+"Intel Bay Trail TXE" rev 0x0f at pci0 dev 26 function 0 not configured
+pcib0 at pci0 dev 31 function 0 "Intel Bay Trail LPC" rev 0x0f
+isa0 at pcib0
+isadma0 at isa0
+com0 at isa0 port 0x3f8/8 irq 4: ns16550a, 16 byte fifo
+pcppi0 at isa0 port 0x61
+spkr0 at pcppi0
+vmm0 at mainbus0: VMX/EPT (using slow L1TF mitigation)
+efifb at mainbus0 not configured
+manufacturer 0x024c, product 0xb723 at sdmmc1 function 1 not configured
+scsibus1 at sdmmc0: 2 targets, initiator 0
+sd0 at scsibus1 targ 1 lun 0: <SD/MMC, BIWIN, 0000> removable
+sd0: 29824MB, 512 bytes/sector, 61079552 sectors
+umass0 at uhub0 port 1 configuration 1 interface 0 "PNY USB 2.0 FD" rev 2.00/1.00 addr 2
+umass0: using SCSI over Bulk-Only
+scsibus2 at umass0: 2 targets, initiator 0
+sd1 at scsibus2 targ 1 lun 0: <PNY, USB 2.0 FD, PMAP> removable serial.154b00d46BDAA0272259
+sd1: 30608MB, 512 bytes/sector, 62685184 sectors
+uhidev0 at uhub0 port 2 configuration 1 interface 0 "RCA Detachable USB Keyboard" rev 1.10/1.10 addr 3
+uhidev0: iclass 3/1
+ukbd0 at uhidev0: 8 variable keys, 6 key codes
+wskbd0 at ukbd0: console keyboard
+uhidev1 at uhub0 port 2 configuration 1 interface 1 "RCA Detachable USB Keyboard" rev 1.10/1.10 addr 3
+uhidev1: iclass 3/0, 3 report ids
+uhid0 at uhidev1 reportid 1: input=2, output=0, feature=0
+uhid1 at uhidev1 reportid 2: input=1, output=0, feature=0
+ums0 at uhidev1 reportid 3: 5 buttons, Z and W dir
+wsmouse0 at ums0 mux 0
+vscsi0 at root
+scsibus3 at vscsi0: 256 targets
+softraid0 at root
+scsibus4 at softraid0: 256 targets
+root on sd0a (7246cd36a8c1b479.a) swap on sd0b dump on sd0b
+[drm] *ERROR* Failed to own the pwm chip
+inteldrm0: 800x1280, 32bpp
+wsdisplay0 at inteldrm0 mux 1: console (std, vt100 emulation), using wskbd0
+wsdisplay0: screen 1-5 added (std, vt100 emulation)
