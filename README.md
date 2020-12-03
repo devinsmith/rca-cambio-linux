@@ -10,11 +10,7 @@ bit firmware on an amd64 Atom CPU.
 
 - Debian (using [mixed mode](https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/10.6.0+nonfree/multi-arch/iso-cd/ "Mixed mode ISO"))
 - Ubuntu (using Linuxium's [isorespin.sh](http://linuxiumcomau.blogspot.com.au/2017/06/customizing-ubuntu-isos-documentation.html))
-- Void (needs custom ISO)
-
-  Need to create the custom ISO with Void's mklive and
-  [PR102](https://github.com/voidlinux/void-mklive/pull/102)
-
+- Void Linux
 - [OpenBSD](openbsd/), not a Linux distro but includes support for bootia32.efi on the
   install media (install61.fs).
 
