@@ -13,6 +13,7 @@ bit firmware on an amd64 Atom CPU.
 - Void Linux
 - [OpenBSD](openbsd/), not a Linux distro but includes support for bootia32.efi on the
   install media (install61.fs).
+- [Fedora 35](https://download.fedoraproject.org/pub/fedora/linux/releases/35/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-35-1.2.iso)
 
 # Hardware
 
