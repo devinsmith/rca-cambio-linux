@@ -17,10 +17,21 @@ bit firmware on an amd64 Atom CPU.
 
 # Hardware
 
-- CPU: Intel(R) Atom(TM) CPU Z3735F @ 1.33 GHz
-- Battery: axp288 (min/max: 0x??/0x??)
-- Wifi: Realtek RTL8723BS Wireless LAN 80211n SDIO Network Adapter
-- TBD
+- CPU: Intel®️ Atom™️ quad-core CPU Z3735F @ 1.33 GHz
+- Wifi: Realtek RTL8723BS Wireless LAN 802.11 b/g/n 2.4GHz SDIO Network Adapter
+- RAM: 2GB
+- Storage: 32GB eMMC, microSD slot (up to 64GB)
+- Battery: 2 x 3.7V batteries (unknown capacity, "up to 6 hours battery life"), with AXP288 power management IC
+- Display: 10.1", 1280x800 pixels, Intel HD integrated graphics
+- Touchscreen: SileadTouch 10-finger multi-touch
+- Camera: 1MP (front camera) and 2MP (rear camera), using the OV2680 sensor
+- Audio output: mono speaker, 3.5mm combo audio jack
+- Bluetooth: 4.0
+- Video output: micro HDMI
+- USB: micro USB 2.0 port, USB 2.0 port
+- Weight: 2.13 lbs
+- Dimensions: 10.2" (W) x 0.39" (D) x 6.5" (H)
+- FCC ID: A2HW101
 
 # Configuration
 
