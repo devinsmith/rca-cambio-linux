@@ -39,13 +39,25 @@ bit firmware on an amd64 Atom CPU.
 
 # Configuration
 
-By default the RCA Cambio runs in portrait mode, but before booting you'll want
-to add `video=efifb fbcon=rotate:1` to your kernel command line.
+## Display
 
-To get out of portrait mode by default in Fedora,
-1. Get card devices by executing `ls /sys/class/drm`
-2. Find the one for your display, you can run `cat /sys/class/drm/<card device name here>/modes` to see the resolution and determine which is which (mine was `card0-DSI-1`)
-3. Use Grubby to add the following kernel arguments (using my example above, note that `left_side_up` is also an option): `sudo grubby --update-kernel=ALL --args="video=DSI-1:panel_orientation=right_side_up"`
+By default the RCA Cambio runs in portrait mode. To change it to landscape mode, edit `/etc/default/grub` and update `GRUB_CMDLINE_LINUX_DEFAULT`:
+
+- if you're using only the text terminal, append `video=efifb fbcon=rotate:1`.
+- if you're using a desktop environment, append `video=DSI-1:panel_orientation=right_side_up`.
+
+Update GRUB by running `sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg` on Fedora or `sudo update-grub` on Debian or Ubuntu.
+
+Other [display orientations](https://docs.kernel.org/fb/modedb.html) are possible.
+
+You can confirm your video display by:
+
+1. Getting the card devices by executing `ls /sys/class/drm`.
+2. Finding the one for your display, running `cat /sys/class/drm/<card device name here>/modes` to see the resolution (800x1280) and determining which is which (mine was `card0-DSI-1`).
+
+### Known issues and limitations
+
+Currently there's [no way to rotate the screen](https://www.gnu.org/software/grub/manual/grub/grub.html#gfxmode) in GRUB.
 
 Linux Kernel 4.11 and higher is needed for DRM video acceleration.
 
