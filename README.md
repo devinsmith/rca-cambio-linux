@@ -8,12 +8,27 @@ Generally any Linux distribution will work with some alteration. Very few
 distros currently work out of the box on this tablet due to the use of a 32
 bit firmware on an amd64 Atom CPU.
 
-- Debian (using [mixed mode](https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/10.6.0+nonfree/multi-arch/iso-cd/ "Mixed mode ISO"))
-- Ubuntu (using Linuxium's [isorespin.sh](http://linuxiumcomau.blogspot.com.au/2017/06/customizing-ubuntu-isos-documentation.html))
-- Void Linux
-- [OpenBSD](openbsd/), not a Linux distro but includes support for bootia32.efi on the
-  install media (install61.fs).
-- [Fedora 35](https://download.fedoraproject.org/pub/fedora/linux/releases/35/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-35-1.2.iso)
+As of 2024, the most recent versions of the compatible distros support most
+of the hardware out-of-the-box: keyboard, display, screen rotation, Wifi,
+Bluetooth, audio and battery management. However, as of May 2024 there is
+[no working support for the cameras](https://askubuntu.com/questions/1250560/why-doesnt-my-camera-work-when-theres-a-kernel-module-for-the-driver)
+(i.e. the OV2680 sensor) yet.
+
+## Debian
+
+Using [mixed mode](https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/10.6.0+nonfree/multi-arch/iso-cd/ "Mixed mode ISO").
+
+## Ubuntu
+
+Using Linuxium's [isorespin.sh](http://linuxiumcomau.blogspot.com.au/2017/06/customizing-ubuntu-isos-documentation.html).
+
+## Void Linux
+
+## [OpenBSD](openbsd/)
+
+Not a Linux distro but includes support for bootia32.efi on the install media (install61.fs).
+
+## [Fedora 35](https://download.fedoraproject.org/pub/fedora/linux/releases/35/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-35-1.2.iso)
 
 # Hardware
 
