@@ -72,8 +72,9 @@ won't boot up. To work around that you can:
   Gnome on Xorg, audio works fine (to select Gnome on Xorg, click the gear at the
   right bottom corner after selecting your user; your choice will be remembered).
 - If your Wifi connection keeps dropping and not coming back, restart the
-  chip service with `sudo systemctl restart rtl8723bsbt.service`. Usually a single
-  restart fixes the issue.
+  chip service with
+  `sudo modprobe -rv r8723bs ; sleep 5 ; sudo modprobe r8723bs ; sudo systemctl restart NetworkManager`.
+  Usually a single restart fixes the issue.
 
 ### Known issues
 
