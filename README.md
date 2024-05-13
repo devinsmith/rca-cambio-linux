@@ -31,7 +31,7 @@ otherwise (at least) Wifi won't work.
   You can reset its state back by selecting the headphones, and then the speakers in
   the sound widget, or with `alsaucm -c bytcr-rt5640 set _verb HiFi set _enadev Speaker`.
 - Usually when the tablet enters in suspended mode it doesn't wake up. Disable
-  this behavior (including the power button) in the Power section in Settings.
+  "Automatic Suspend" and "Power Button Behavior" in the Power section in Settings.
 
 ### Known issues
 
