@@ -16,13 +16,78 @@ Bluetooth, audio and battery management. However, as of May 2024 there is
 
 ## Debian
 
-Using [mixed mode](https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/10.6.0+nonfree/multi-arch/iso-cd/ "Mixed mode ISO").
+If installing Debian 11.9 or older, use the
+[images including firmware packages](https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/),
+otherwise (at least) Wifi won't work.
+
+### Troubleshooting
+
+- If the installer can't connect to your Wifi network, select "Enter SSID manually"
+  and type the network name. If it still doesn't connect, try switching to an open
+  network (or vice-versa).
+- If your Wifi connection keeps dropping and not coming back, restart the
+  chip service with `sudo systemctl restart rtl8723bsbt.service`.
+- On Debian 12.x, after you log in audio is usually muted and routed to the headphones.
+  You can reset its state back by selecting the headphones, and then the speakers in
+  the sound widget, or with `alsaucm -c bytcr-rt5640 set _verb HiFi set _enadev Speaker`.
+- Usually when the tablet enters in suspended mode it doesn't wake up. Disable
+  "Automatic Suspend" and "Power Button Behavior" in the Power section in Settings.
+
+### Known issues
+
+- The Wifi connection is pretty unstable on Debian 12.x, requiring the chip service to
+  be restarted often.
+- On Debian 12.x you may see a flood of messages saying "ASoC: no backend DAIS enabled
+  enable for ... Port" on the console. This
+  [bug will be fixed](https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/3407)
+  in a future update and doesn't affect the audio experience.
 
 ## Ubuntu
 
-Using Linuxium's [isorespin.sh](http://linuxiumcomau.blogspot.com.au/2017/06/customizing-ubuntu-isos-documentation.html).
+All [Ubuntu versions with EFI boot](https://old-releases.ubuntu.com/releases/) 
+(since Ubuntu 10) are meant to run on 64 bit firmware, thus unmodified installers
+won't boot up. To work around that you can:
+
+- Use Linuxium's
+  [isorespin.sh](http://linuxiumcomau.blogspot.com.au/2017/06/customizing-ubuntu-isos-documentation.html)
+  to create a bootable installer image.
+- Use Linuxium's
+  [isorespinner.sh](https://linuxiumcomau.blogspot.com/2022/04/customizing-ubuntu-isos-documentation.html)
+  to create a bootable installer image.
+- Use [Ventoy](https://github.com/ventoy/Ventoy) to create a bootable USB
+  stick that can boot the original, unmodified images.
+
+### Troubleshooting
+
+- If the installer powers off the computer while in the splash screen, try disabling
+  the SOC board sensor in the BIOS (in the Advanced tab). You can reenable it
+  back after you finish the installation.
+- Always connect to Wifi during installation so the installer can download the
+  32-bit boot binaries, otherwise the installer will fail at the end while
+  installing GRUB.
+- If the Ubuntu 22 installer freezes constantly, try installing just the
+  base/minimum system and no additional firmware/media formats.
+- On Ubuntu 22, if using Gnome on Wayland (default) the sound widget won't
+  show, the sound settings will be disabled and you'll have no audio. Using
+  Gnome on Xorg, audio works fine (to select Gnome on Xorg, click the gear at the
+  right bottom corner after selecting your user; your choice will be remembered).
+- If your Wifi connection keeps dropping and not coming back, restart the
+  chip service with
+  `sudo modprobe -rv r8723bs ; sleep 5 ; sudo modprobe r8723bs ; sudo systemctl restart NetworkManager`.
+  Usually a single restart fixes the issue.
+
+### Known issues
+
+- As of May 2024, the Ubuntu 24 installer crashes frequently, never finishing
+  the installation, and currently there's no option to upgrade from Ubuntu 22
+  to Ubuntu 24.
+- Ubuntu 20 has no audio working, and it also inverts both the video orientation
+  (even with the display orientation fix explained below) and the mouse cursor,
+  making it hard to use in graphic mode.
 
 ## Void Linux
+
+Need to create the custom ISO with Void's mklive and [PR102](https://github.com/voidlinux/void-mklive/pull/102).
 
 ## [OpenBSD](openbsd/)
 
