@@ -16,6 +16,10 @@ Bluetooth, audio and battery management. However, as of May 2024 there is
 
 ## Debian
 
+Currently the latest Debian releases (11.x and 12.x) show several incompatibilities
+with the hardware, and older releases (10.x or older) don't fully support the laptop
+capabilities, making the experience suboptimal when using this distro.
+
 If installing Debian 11.9 or older, use the
 [images including firmware packages](https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/),
 otherwise (at least) Wifi won't work.
@@ -43,6 +47,9 @@ otherwise (at least) Wifi won't work.
   in a future update and doesn't affect the audio experience.
 
 ## Ubuntu
+
+[Ubuntu 22](https://releases.ubuntu.com/jammy/ubuntu-22.04.4-desktop-amd64.iso)
+is currently the most stable release.
 
 All [Ubuntu versions with EFI boot](https://old-releases.ubuntu.com/releases/) 
 (since Ubuntu 10) are meant to run on 64 bit firmware, thus unmodified installers
@@ -93,7 +100,23 @@ Need to create the custom ISO with Void's mklive and [PR102](https://github.com/
 
 Not a Linux distro but includes support for bootia32.efi on the install media (install61.fs).
 
-## [Fedora 35](https://download.fedoraproject.org/pub/fedora/linux/releases/35/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-35-1.2.iso)
+## Fedora
+
+[Fedora 35](https://download.fedoraproject.org/pub/fedora/linux/releases/35/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-35-1.2.iso)
+is currently the most stable release.
+
+### Troubleshooting
+
+- On Fedora 36 or newer, after you log in audio is usually muted and routed to the headphones.
+  You can reset its state back by selecting the headphones, and then the speakers in
+  the sound widget or in Settings.
+- If you upgrade Fedora 35 to 37, the system won't boot up anymore. You can still boot the
+  previous kernel from GRUB though.
+
+### Known issues
+
+- On Fedora 40 Bluetooth doesn't turn on.
+- On Fedora 36 or newer, the screen won't automatically rotate in tablet mode.
 
 # Hardware
 
