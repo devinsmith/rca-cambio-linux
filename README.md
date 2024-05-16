@@ -17,7 +17,7 @@ Bluetooth, audio and battery management. However, as of May 2024 there is
 ## Debian
 
 Currently the latest Debian releases (11.x and 12.x) show several incompatibilities
-with the hardware, and older releases (10.x or older) don't fully support the laptop
+with the hardware, and older releases (10.x or older) don't fully support the tablet
 capabilities, making the experience suboptimal when using this distro.
 
 If installing Debian 11.9 or older, use the
@@ -66,7 +66,7 @@ won't boot up. To work around that you can:
 
 ### Troubleshooting
 
-- If the installer powers off the computer while in the splash screen, try disabling
+- If the installer powers off the tablet while in the splash screen, try disabling
   the SOC board sensor in the BIOS (in the Advanced tab). You can reenable it
   back after you finish the installation.
 - Always connect to Wifi during installation so the installer can download the
@@ -163,6 +163,49 @@ You can confirm your video display by:
 Currently there's [no way to rotate the screen](https://www.gnu.org/software/grub/manual/grub/grub.html#gfxmode) in GRUB.
 
 Linux Kernel 4.11 and higher is needed for DRM video acceleration.
+
+# Tips
+
+## Booting
+
+- To force the tablet to power off, keep the power button pressed for 12s.
+- The tablet won't boot from a SD card, only from a USB stick. You can use a
+  USB SD card reader, but be aware that some may not be recognized at boot.
+- Unplugging the USB stick from the tablet usually changes the boot order, and
+  you have to go to the BIOS settings and set it up again.
+- To access the BIOS settings, press the [Delete] key repeatedly once the RCA logo
+  appears on screen when the tablet boots.
+- If GRUB doesn't appear when your Linux distro is booting up, keep the [Shift] key 
+  pressed when the tablet boots (i.e., when the RCA logo is displayed) until you
+  see the GRUB menu.
+- You can reboot the tablet and open the BIOS settings automatically by running
+  `systemctl reboot --firmware-setup`.
+- If the EFI boot entries are messed up you can delete them by running
+  `for j in {0..9} ; do for i in {0..9} ; do sudo efibootmgr -b $i -B ; done ; done`.
+  Ignore the error messages `Could not delete boot variable: Invalid argument`, and
+  remember to update GRUB after running the command above.
+
+## Keyboard
+
+- The [F1]...[F12] keys default to multimedia commands, so you must keep the [Fn]
+  key pressed when pressing [F1]...[F12] (for example, to switch to a console).
+- The keyboard is a bit finicky with multi-key presses (e.g. [Ctrl]+[Alt]+[F1]).
+  Usually pressing one key after the other is the best way to do it, instead of
+  pressing all keys simultaneously.
+
+## Setting up Linux
+
+- If your user is not allowed to run `sudo`, run `su` and then
+  `sudo adduser YOUR_USERNAME sudo`. Log out and log in again for changes to take
+  effect.
+- The SSH server can be installed by running
+  `sudo yum install openssh-server` on Fedora or
+  `sudo apt-get install openssh-server` on Debian or Ubuntu, and then
+  `systemctl enable ssh`.
+- Most administrative tools are located at `/sbin`, but some network-related tools
+  might require the net-tools package to be installed first by running
+  `sudo yum install net-tools` on Fedora or `sudo apt-get install net-tools` on
+  Debian or Ubuntu.
 
 # Similar pages
 
