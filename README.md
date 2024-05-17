@@ -76,8 +76,7 @@ won't boot up. To work around that you can:
   base/minimum system and no additional firmware/media formats.
 - On Ubuntu 22, if using Gnome on Wayland (default) the sound widget won't
   show, the sound settings will be disabled and you'll have no audio. Using
-  Gnome on Xorg, audio works fine (to select Gnome on Xorg, click the gear at the
-  right bottom corner after selecting your user; your choice will be remembered).
+  Gnome on Xorg, audio works fine.
 - If your Wifi connection keeps dropping and not coming back, restart the
   chip service with
   `sudo modprobe -rv r8723bs ; sleep 5 ; sudo modprobe r8723bs ; sudo systemctl restart NetworkManager`.
@@ -146,8 +145,8 @@ is currently the most stable release.
 
 By default the RCA Cambio runs in portrait mode. To change it to landscape mode, edit `/etc/default/grub` and update `GRUB_CMDLINE_LINUX_DEFAULT`:
 
-- if you're using only the text terminal, append `video=efifb fbcon=rotate:1`.
-- if you're using a desktop environment, append `video=DSI-1:panel_orientation=right_side_up`.
+- If you're using only the text terminal, append `video=efifb fbcon=rotate:1`.
+- If you're using a desktop environment, append `video=DSI-1:panel_orientation=right_side_up`.
 
 Update GRUB by running `sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg` on Fedora or `sudo update-grub` on Debian or Ubuntu.
 
@@ -158,11 +157,90 @@ You can confirm your video display by:
 1. Getting the card devices by executing `ls /sys/class/drm`.
 2. Finding the one for your display, running `cat /sys/class/drm/<card device name here>/modes` to see the resolution (800x1280) and determining which is which (mine was `card0-DSI-1`).
 
-### Known issues and limitations
+### Known issues
 
-Currently there's [no way to rotate the screen](https://www.gnu.org/software/grub/manual/grub/grub.html#gfxmode) in GRUB.
+- Currently there's [no way to rotate the screen](https://www.gnu.org/software/grub/manual/grub/grub.html#gfxmode) in GRUB.
+- Linux Kernel 4.11 and higher is needed for DRM video acceleration.
 
-Linux Kernel 4.11 and higher is needed for DRM video acceleration.
+## Touchscreen
+
+For the touchscreen to work it requires some firmware files and calibration.
+The SileadTouch firmware files can be obtained from the
+[gsl-firmware project](https://github.com/onitake/gsl-firmware) and must be
+added to the `/lib/firmware` folder; furthermore, the touchscreen-specific
+firmware file must be named `mssl1680.fw`. You can do it by running:
+
+```
+wget https://github.com/onitake/gsl-firmware/raw/master/firmware/rca/w101v2/SileadTouch.fw
+wget https://github.com/onitake/gsl-firmware/raw/master/firmware/rca/w101v2/silead_ts.fw
+wget https://github.com/onitake/gsl-firmware/raw/master/firmware/rca/w101v2/firmware.fw
+sudo mkdir /lib/firmware/silead
+sudo mv firmware.fw /lib/firmware/silead/mssl1680.fw
+sudo mv SileadTouch.fw silead_ts.fw /lib/firmware/silead/
+```
+
+The calibration settings can be added by creating the file `/etc/udev/rules.d/95-libinput.rules`
+with the following line:
+
+`ATTRS{name}=="silead_ts", ENV{LIBINPUT_CALIBRATION_MATRIX}="0.0 4.55 0.0 -2.5 0.0 1.01 0.0 0.0 1.0"`
+
+Then restart the system for the changes to take effect.
+
+### Calibration process
+
+You can confirm the calibration settings by doing it again.
+
+1. The calibration process must be done using Xorg, as Wayland doesn't expose the
+   required settings.
+2. Download and build
+   [`xlibinput_calibrator`](https://github.com/kreijack/xlibinput_calibrator),
+   as `xinput_calibrator` doesn't compute the required calibration matrix. You
+   can do it by running:
+   ```
+   # On Fedora, run:
+   # sudo yum install gcc-g++ libX11-devel libXi-devel libXrandr-devel git
+   # On Debian or Ubuntu, run:
+   # sudo apt-get install g++ libx11-dev libxi-dev libxrandr-dev git make
+   git clone https://github.com/kreijack/xlibinput_calibrator.git
+   cd xlibinput_calibrator/src/
+   make
+   ```
+3. Run `xinput_calibrator` under the original screen rotation; touch (preferably
+   using a stylus) each one of the 4 corners on the screen to generate the
+   calibration matrix:
+   ```
+   xrandr --orientation normal
+   ./xlibinput_calibrator --show-xinput-cmd
+   xrandr --orientation right
+   ```
+   The touchscreen should be now calibrated; update the udev settings with the
+   values displayed by `xlibinput_calibrator` for the `xinput` command.
+
+### Troubleshooting
+
+- Run `sudo dmesg | grep -i silead` to ensure that the firmware files were loaded.
+  You should see some messages referencing the firmware and the device (e.g.
+  `silead_ts i2c-MSSL1680:00: Silead chip ID: 0x50910000`).
+- To double check the udev rule, display the information of each mouse device using
+  `udevadm info -a -p /sys/class/input/mouse<N>` (mine was `mouse0`); you should
+  find one device with the attribute `ATTRS{NAME}=="silead_ts"`.
+- Run `xinput` to check the list of input devices; there should be a `silead_ts`
+  pointer if using Gnome on Xorg, or a `xwayland-touch` pointer if using Gnome on
+  Wayland.
+- To check if the calibration parameters were applied, start Gnome on Xorg and run
+  `xinput --list-props silead_ts`. The list of properties should include the line
+  `libinput Calibration Matrix (341): 0.000000, 4.550000, 0.000000, -2.500000, 0.000000, 1.010000, 0.000000, 0.000000, 1.000000`.
+- Using Gnome on Xorg, check the file `~/.local/share/xorg/Xorg.0.log` for errors
+  related to the calibration settings. If the settings are correct the log should
+  include the line
+  `silead_ts: applying calibration: 0.000000 4.550000 0.000000 -2.500000 0.000000 1.010000 0.000000 0.000000 1.000000`.
+
+### Known issues
+
+- The on-screen keyboard appears when you touch any sort of text input. A
+  [feature request](https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/872)
+  to keep it closed if a physical keyboard is present was rejected in 2020.
+- Linux kernel 5.10 or older won't load the Silead firmware.
 
 # Tips
 
@@ -192,6 +270,13 @@ Linux Kernel 4.11 and higher is needed for DRM video acceleration.
 - The keyboard is a bit finicky with multi-key presses (e.g. [Ctrl]+[Alt]+[F1]).
   Usually pressing one key after the other is the best way to do it, instead of
   pressing all keys simultaneously.
+
+## Gnome / GUI
+
+- Newer distros use the Wayland compositor by default, but that can be changed
+  to Xorg (and back) during login: just click the gear at the right bottom corner
+  after selecting your user and choose your option. Your choice will be remembered
+  on the next login.
 
 ## Setting up Linux
 
